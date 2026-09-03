@@ -19,8 +19,17 @@
   <a href="index.html" class="logo"><span class="logo-box">SH<i></i></span><span><b>SANA</b><small>ENTERPRISES</small></span></a>
   <nav><a href="index.html#about">About</a><a href="index.html#services">Capabilities</a><a href="index.html#machines">Machines</a><a href="index.html#gallery">Gallery</a><a href="contact.html">Contact</a></nav>
   <a class="top-cta" href="#message">Get in Touch <span>↗</span></a>
-  <button class="hamb" id="hamb" aria-label="Open navigation">☰</button>
+  <button class="hamb" id="hamb" aria-label="Open navigation" aria-expanded="false">☰</button>
 </header>
+<div class="menu-overlay" id="menuOverlay"></div>
+<aside class="mobile-panel" id="mobilePanel" aria-hidden="true">
+  <div class="panel-language"><span>●</span><select aria-label="Select language"><option>Select Language</option><option>English</option><option>Hindi</option><option>Marathi</option></select></div>
+  <nav class="panel-links">
+    <a href="index.html#about"><span class="panel-icon">i</span>About Us</a><a href="index.html#facility"><span class="panel-icon">⌖</span>Location</a><a href="index.html#industries"><span class="panel-icon">●</span>Our Client</a>
+    <a href="index.html#services"><span class="panel-icon">▣</span>Products <b>›</b></a><a href="index.html#gallery"><span class="panel-icon">▧</span>Gallery <b>›</b></a><a href="index.html#contact"><span class="panel-icon">▣</span>Career</a><a class="panel-service" href="#message"><span class="panel-icon">◉</span>Customer Service</a>
+  </nav>
+  <div class="panel-social"><a href="https://wa.me/919764999827" aria-label="WhatsApp">◔</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a></div>
+</aside>
 
 <main class="contact-page">
   <section class="contact-hero"><small>07 / SH SANA ENTERPRISES</small><h1>Contact <em>Us</em></h1></section>
@@ -53,9 +62,11 @@
   <div class="copyright">© 2026 SH SANA Enterprises. All rights reserved.</div>
 </footer>
 <script>
-const nav=document.querySelector('.header nav');
-document.getElementById('hamb').addEventListener('click',()=>nav.classList.toggle('open'));
-nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>nav.classList.remove('open')));
+const nav=document.querySelector('.header nav'),hamb=document.getElementById('hamb'),panel=document.getElementById('mobilePanel'),overlay=document.getElementById('menuOverlay');
+function togglePanel(open){panel.classList.toggle('open',open);overlay.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));hamb.setAttribute('aria-expanded',String(open))}
+hamb.addEventListener('click',()=>togglePanel(!panel.classList.contains('open')));
+overlay.addEventListener('click',()=>togglePanel(false));
+document.querySelectorAll('.panel-links a').forEach(link=>link.addEventListener('click',()=>togglePanel(false)));
 document.getElementById('message').addEventListener('submit', function(event){
   event.preventDefault();
   const data=new FormData(this);

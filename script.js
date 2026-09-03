@@ -1,5 +1,8 @@
-const nav=document.getElementById('nav'),hamb=document.getElementById('hamb');
-hamb.addEventListener('click',()=>nav.classList.toggle('open'));
+const nav=document.getElementById('nav'),hamb=document.getElementById('hamb'),panel=document.getElementById('mobilePanel'),overlay=document.getElementById('menuOverlay');
+function togglePanel(open){panel.classList.toggle('open',open);overlay.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));hamb.setAttribute('aria-expanded',String(open))}
+hamb.addEventListener('click',()=>togglePanel(!panel.classList.contains('open')));
+overlay.addEventListener('click',()=>togglePanel(false));
+document.querySelectorAll('.panel-links a').forEach(a=>a.addEventListener('click',()=>togglePanel(false)));
 document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
 
 const observer=new IntersectionObserver(entries=>{
