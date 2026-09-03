@@ -2,6 +2,8 @@ SH SANA ENTERPRISES — FINAL WEBSITE PACKAGE
 
 Open index.html in a browser to preview the complete responsive website.
 
+The reference-style contact profile is available at contact.html and is linked from the homepage navigation.
+
 Included:
 - Cinematic animated hero
 - Real SH SANA machine/workshop images from the current public website
